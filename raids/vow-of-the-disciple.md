@@ -98,7 +98,30 @@ Other important mechanics:
 ![Exhibition map](../resources/vow-exhibition-map.png)
 
 ## Rhulk
+The boss fight for Rhulk can be broken up into three parts:
+1. Getting to Rhulk
+1. Weakening Rhulk
+1. Damaging Rhulk
 
-Who am I kidding, we’ve 4 manned this guy. We don’t need notes. Here’s a map:
+We will once again be using all the symbols we have been using throughout the entire raid.
 
 ![Rhulk map](../resources/vow-rhulk-map.png)
+
+### Getting to Rhulk
+There will be a forcefield that prevents you from approaching Rhulk. We will be splitting up into two teams of two. The other two guardians will have a specialized job. 
+
+#### Team One - Ad Clear
+The first team of two is just ad clear. Most of the ads we need to clear will be at range, so submachine guns and glaives are probably not be the way to go here. Prioritize killing glyphkeepers as soon as they spawn. There will be one on each side.
+
+Rhulk will charge up blasts and shoot either on the left, the right, or the center. Avoid these blasts, they do a decent amount of damage.
+
+#### Team Two - Runners
+Team two are runners. There job is to get the emanating force buff and then deposit into the two called out pillars at the same time. To get the emanating force buff, you must first get the leeching force buff. You will get this by shooting the crystal on the right side when you hear the "split" callout or the "second split" callout. Once you have leeching force, you can upgrade it to emanating force by jumping into Rhulk's laser beam when he shoots it. With Emanating you can pass the forcefield. Once both runners have emanating, two pillars will be called out (eg L1, R3). Each runner will go to a pillar and deposit at the same time. Right after depositing, we will split the buffs again and repeat the process two more times.
+
+#### Team Three - Pillar Caller
+Team three is a single guardian. When the glyphkeepers are killed, they reveal three symbols each. One set of symbols can only be seen by guardians without the leeching force buff, and the other can only be seen by guardians with it. The buff holder and the pillar caller will call out their symbols. Just like in the Exhibition encounter, the symbol contained in both sets is the one we are looking for. The Pillar Caller always shoots the left crystal on the "split" callout, and then goes to the center plate and calls out "second split" to give the buff to a runner.
+
+After second split, the pillar caller should down at the six pillars and call out which two contain the correct symbol for the runners to deposit at.
+
+#### Team Four - Buff Holder
+The buff holder has an easy job
