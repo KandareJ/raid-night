@@ -124,4 +124,14 @@ Team three is a single guardian. When the glyphkeepers are killed, they reveal t
 After second split, the pillar caller should down at the six pillars and call out which two contain the correct symbol for the runners to deposit at.
 
 #### Team Four - Buff Holder
-The buff holder has an easy job
+The buff holder has an easy job. Once the encounter starts, they shoot the crystal above Rhulk to get the Leeching buff. They then stand on the plate and call out "first split". When "second split" is called out, they shoot the buff on the left. When both glyphkeepers are dead, they call out the symbols they see. They can then just clear ads and avoid Rhulk's laser. After the runners dunk, the buff holder should be standing on the plate and call out "first split" to restart their cycle.
+
+### Damaging Rhulk
+#### Glaive Shooter
+The glaive shooter's job is to shoot Rhulk's glaive. This will once again give them the Leeching force buff. They then need to jump into Rhulk's laser beam to get the emanating force buff. Someone will callout where they need to deposit this buff.
+
+#### Non-glaive shooters
+Do not shoot the glaive. Call out the location to dunk when the symbol appears. When Rhulk's weak spots appear, shoot them. Don't shoot the glaive. Clear ads
+
+#### All
+After all of Rhulk's 4 weak spots are broken, damage phase begins. Kill Rhulk until he is immune. Once damage is over, run back to the plate where the Rhulk encounter began. If you don't get there in time, Rhulk's forcefield will shoot you off the edge.
