@@ -1,5 +1,5 @@
 {
-  description = "Raid Night";
+  description = "Raid night flake";
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs?ref=nixos-unstable";
@@ -11,12 +11,26 @@
       let
         pkgs = nixpkgs.legacyPackages.${system};
       in {
-        packages.default = pkgs.hello;
+        packages.default = pkgs.stdenv.mkDerivation {
+          src = ./.;
+          name = "raid-night";
+          nativeBuildInputs = [ pkgs.mdbook ];
 
-        shell.default = pkgs.mkShell {
-          buildInputs = with pkgs; [ nodejs nodePackages.create-react-app yarn ];
+            buildPhase = ''
+              mdbook build
+            '';
+
+            installPhase = ''
+              mkdir -p $out
+              cp -r book/* $out/
+            '';
+        };
+
+        devShells.default = pkgs.mkShell {
+          buildInputs = [ pkgs.mdbook ];
           shellHook = ''
-            echo Developing!
+            alias run="mdbook serve"
+            echo "Raid night!"
           '';
         };
       }
