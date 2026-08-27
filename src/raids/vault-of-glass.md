@@ -133,3 +133,6 @@ Oracle callouts:
 
 Another perspective:  
 ![Oracle POV](../resources/vog-atheon-oracles-pov.png)
+
+## Rick Kackis
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o4Ac6s2OA3g" title="Destiny 2: VAULT OF GLASS RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

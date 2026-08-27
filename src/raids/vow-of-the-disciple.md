@@ -135,3 +135,6 @@ Do not shoot the glaive. Call out the location to dunk when the symbol appears. 
 
 #### All
 After all of Rhulk's 4 weak spots are broken, damage phase begins. Kill Rhulk until he is immune. Once damage is over, run back to the plate where the Rhulk encounter began. If you don't get there in time, Rhulk's forcefield will shoot you off the edge.
+
+## Rick Kackis
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EfXNilL34DU" title="Destiny 2: VOW OF THE DISCIPLE RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
