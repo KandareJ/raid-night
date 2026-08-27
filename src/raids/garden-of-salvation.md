@@ -67,3 +67,6 @@ Split into three teams of two. Two teams are “mote collectors” and one team 
 7. Damage phase
 
 When a guardian deposits motes, their main goal should then be to clear the shields because they will have the enlightened buff.
+
+## Rick Kackis
+<iframe width="560" height="315" src="https://www.youtube.com/embed/froVY9nlLCc" title="Destiny 2: GARDEN OF SALVATION RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
