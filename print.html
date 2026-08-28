@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" class="light sidebar-visible" dir="ltr">
+<html lang="en" class="light" dir="ltr">
     <head>
         <!-- Book generated using mdBook -->
         <meta charset="UTF-8">
@@ -8,57 +8,44 @@
 
 
         <!-- Custom HTML head -->
-
+        
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="theme-color" content="#ffffff">
 
-        <link rel="icon" href="favicon-de23e50b.svg">
-        <link rel="shortcut icon" href="favicon-8114d1fc.png">
-        <link rel="stylesheet" href="css/variables-8adf115d.css">
-        <link rel="stylesheet" href="css/general-e96d0476.css">
-        <link rel="stylesheet" href="css/chrome-d279d366.css">
-        <link rel="stylesheet" href="css/print-9e4910d8.css" media="print">
+        <link rel="icon" href="favicon.svg">
+        <link rel="shortcut icon" href="favicon.png">
+        <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+        <link rel="stylesheet" href="css/print.css" media="print">
 
         <!-- Fonts -->
-        <link rel="stylesheet" href="fonts/fonts-9644e21d.css">
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+        <link rel="stylesheet" href="fonts/fonts.css">
 
         <!-- Highlight.js Stylesheets -->
-        <link rel="stylesheet" id="mdbook-highlight-css" href="highlight-493f70e1.css">
-        <link rel="stylesheet" id="mdbook-tomorrow-night-css" href="tomorrow-night-4c0ae647.css">
-        <link rel="stylesheet" id="mdbook-ayu-highlight-css" href="ayu-highlight-3fdfc3ac.css">
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
 
         <!-- Custom theme stylesheets -->
+        <link rel="stylesheet" href="./mdbook-admonish.css">
 
-
-        <!-- Provide site root and default themes to javascript -->
-        <script>
-            const path_to_root = "";
-            const default_light_theme = "light";
-            const default_dark_theme = "navy";
-            window.path_to_searchindex_js = "searchindex-ec7a9d94.js";
-        </script>
-        <!-- Start loading toc.js asap -->
-        <script src="toc-58577829.js"></script>
     </head>
-    <body>
-    <div id="mdbook-help-container">
-        <div id="mdbook-help-popup">
-            <h2 class="mdbook-help-title">Keyboard shortcuts</h2>
-            <div>
-                <p>Press <kbd>←</kbd> or <kbd>→</kbd> to navigate between chapters</p>
-                <p>Press <kbd>S</kbd> or <kbd>/</kbd> to search in the book</p>
-                <p>Press <kbd>?</kbd> to show this help</p>
-                <p>Press <kbd>Esc</kbd> to hide this help</p>
-            </div>
-        </div>
-    </div>
-    <div id="mdbook-body-container">
+    <body class="sidebar-visible no-js">
+    <div id="body-container">
+        <!-- Provide site root to javascript -->
+        <script>
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
         <!-- Work around some values being stored in localStorage wrapped in quotes -->
         <script>
             try {
-                let theme = localStorage.getItem('mdbook-theme');
-                let sidebar = localStorage.getItem('mdbook-sidebar');
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
 
                 if (theme.startsWith('"') && theme.endsWith('"')) {
                     localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
@@ -72,69 +59,87 @@
 
         <!-- Set the theme before any content is loaded, prevents flash -->
         <script>
-            const default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? default_dark_theme : default_light_theme;
-            let theme;
+            var theme;
             try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
             if (theme === null || theme === undefined) { theme = default_theme; }
-            const html = document.documentElement;
+            var html = document.querySelector('html');
             html.classList.remove('light')
             html.classList.add(theme);
-            html.classList.add("js");
+            var body = document.querySelector('body');
+            body.classList.remove('no-js')
+            body.classList.add('js');
         </script>
 
-        <input type="checkbox" id="mdbook-sidebar-toggle-anchor" class="hidden">
+        <input type="checkbox" id="sidebar-toggle-anchor" class="hidden">
 
         <!-- Hide / unhide sidebar before it is displayed -->
         <script>
-            let sidebar = null;
-            const sidebar_toggle = document.getElementById("mdbook-sidebar-toggle-anchor");
+            var body = document.querySelector('body');
+            var sidebar = null;
+            var sidebar_toggle = document.getElementById("sidebar-toggle-anchor");
             if (document.body.clientWidth >= 1080) {
                 try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
                 sidebar = sidebar || 'visible';
             } else {
                 sidebar = 'hidden';
-                sidebar_toggle.checked = false;
             }
-            if (sidebar === 'visible') {
-                sidebar_toggle.checked = true;
-            } else {
-                html.classList.remove('sidebar-visible');
-            }
+            sidebar_toggle.checked = sidebar === 'visible';
+            body.classList.remove('sidebar-visible');
+            body.classList.add("sidebar-" + sidebar);
         </script>
 
-        <nav id="mdbook-sidebar" class="sidebar" aria-label="Table of contents">
-            <!-- populated by js -->
-            <mdbook-sidebar-scrollbox class="sidebar-scrollbox"></mdbook-sidebar-scrollbox>
-            <noscript>
-                <iframe class="sidebar-iframe-outer" src="toc.html"></iframe>
-            </noscript>
-            <div id="mdbook-sidebar-resize-handle" class="sidebar-resize-handle">
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="landing.html"><strong aria-hidden="true">1.</strong> Home</a></li><li class="chapter-item expanded "><a href="raids/crotas-end.html"><strong aria-hidden="true">2.</strong> Crota's End</a></li><li class="chapter-item expanded "><a href="raids/deep-stone-crypt.html"><strong aria-hidden="true">3.</strong> Deep Stone Crypt</a></li><li class="chapter-item expanded "><a href="raids/garden-of-salvation.html"><strong aria-hidden="true">4.</strong> Garden of Salvation</a></li><li class="chapter-item expanded "><a href="raids/kings-fall.html"><strong aria-hidden="true">5.</strong> King's Fall</a></li><li class="chapter-item expanded "><a href="raids/last-wish.html"><strong aria-hidden="true">6.</strong> Last Wish</a></li><li class="chapter-item expanded "><a href="raids/root-of-nightmares.html"><strong aria-hidden="true">7.</strong> Root of Nightmares</a></li><li class="chapter-item expanded "><a href="raids/salvations-edge.html"><strong aria-hidden="true">8.</strong> Salvation's Edge</a></li><li class="chapter-item expanded "><a href="raids/vault-of-glass.html"><strong aria-hidden="true">9.</strong> Vault of Glass</a></li><li class="chapter-item expanded "><a href="raids/vow-of-the-disciple.html"><strong aria-hidden="true">10.</strong> Vow of the Disciple</a></li></ol>
+            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle">
                 <div class="sidebar-resize-indicator"></div>
             </div>
         </nav>
 
-        <div id="mdbook-page-wrapper" class="page-wrapper">
+        <!-- Track and set sidebar scroll position -->
+        <script>
+            var sidebarScrollbox = document.querySelector('#sidebar .sidebar-scrollbox');
+            sidebarScrollbox.addEventListener('click', function(e) {
+                if (e.target.tagName === 'A') {
+                    sessionStorage.setItem('sidebar-scroll', sidebarScrollbox.scrollTop);
+                }
+            }, { passive: true });
+            var sidebarScrollTop = sessionStorage.getItem('sidebar-scroll');
+            sessionStorage.removeItem('sidebar-scroll');
+            if (sidebarScrollTop) {
+                // preserve sidebar scroll position when navigating via links within sidebar
+                sidebarScrollbox.scrollTop = sidebarScrollTop;
+            } else {
+                // scroll sidebar to current active section when navigating via "next/previous chapter" buttons
+                var activeSection = document.querySelector('#sidebar .active');
+                if (activeSection) {
+                    activeSection.scrollIntoView({ block: 'center' });
+                }
+            }
+        </script>
+
+        <div id="page-wrapper" class="page-wrapper">
 
             <div class="page">
-                <div id="mdbook-menu-bar-hover-placeholder"></div>
-                <div id="mdbook-menu-bar" class="menu-bar sticky">
+                                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky">
                     <div class="left-buttons">
-                        <label id="mdbook-sidebar-toggle" class="icon-button" for="mdbook-sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="mdbook-sidebar">
-                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"/></svg></span>
+                        <label id="sidebar-toggle" class="icon-button" for="sidebar-toggle-anchor" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
                         </label>
-                        <button id="mdbook-theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="mdbook-theme-list">
-                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M371.3 367.1c27.3-3.9 51.9-19.4 67.2-42.9L600.2 74.1c12.6-19.5 9.4-45.3-7.6-61.2S549.7-4.4 531.1 9.6L294.4 187.2c-24 18-38.2 46.1-38.4 76.1L371.3 367.1zm-19.6 25.4l-116-104.4C175.9 290.3 128 339.6 128 400c0 3.9 .2 7.8 .6 11.6c1.8 17.5-10.2 36.4-27.8 36.4H96c-17.7 0-32 14.3-32 32s14.3 32 32 32H240c61.9 0 112-50.1 112-112c0-2.5-.1-5-.2-7.5z"/></svg></span>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
                         </button>
-                        <ul id="mdbook-theme-list" class="theme-popup" aria-label="Themes" role="menu">
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-default_theme">Auto</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-light">Light</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-rust">Rust</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-coal">Coal</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-navy">Navy</button></li>
-                            <li role="none"><button role="menuitem" class="theme" id="mdbook-theme-ayu">Ayu</button></li>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
                         </ul>
-                        <button id="mdbook-search-toggle" class="icon-button" type="button" title="Search (`/`)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="/ s" aria-controls="mdbook-searchbar">
-                            <span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M416 208c0 45.9-14.9 88.3-40 122.7L502.6 457.4c12.5 12.5 12.5 32.8 0 45.3s-32.8 12.5-45.3 0L330.7 376c-34.4 25.2-76.8 40-122.7 40C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208zM208 352c79.5 0 144-64.5 144-144s-64.5-144-144-144S64 128.5 64 208s64.5 144 144 144z"/></svg></span>
+                        <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
                         </button>
                     </div>
 
@@ -142,53 +147,48 @@
 
                     <div class="right-buttons">
                         <a href="print.html" title="Print this book" aria-label="Print this book">
-                            <span class=fa-svg id="print-button"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M128 0C92.7 0 64 28.7 64 64v96h64V64H354.7L384 93.3V160h64V93.3c0-17-6.7-33.3-18.7-45.3L400 18.7C388 6.7 371.7 0 354.7 0H128zM384 352v32 64H128V384 368 352H384zm64 32h32c17.7 0 32-14.3 32-32V256c0-35.3-28.7-64-64-64H64c-35.3 0-64 28.7-64 64v96c0 17.7 14.3 32 32 32H64v64c0 35.3 28.7 64 64 64H384c35.3 0 64-28.7 64-64V384zm-16-88c-13.3 0-24-10.7-24-24s10.7-24 24-24s24 10.7 24 24s-10.7 24-24 24z"/></svg></span>
+                            <i id="print-button" class="fa fa-print"></i>
                         </a>
 
                     </div>
                 </div>
 
-                <div id="mdbook-search-wrapper" class="hidden">
-                    <form id="mdbook-searchbar-outer" class="searchbar-outer">
-                        <div class="search-wrapper">
-                            <input type="search" id="mdbook-searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="mdbook-searchresults-outer" aria-describedby="searchresults-header">
-                            <div class="spinner-wrapper">
-                                <span class=fa-svg id="fa-spin"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M304 48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zm0 416c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM48 304c26.5 0 48-21.5 48-48s-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48zm464-48c0-26.5-21.5-48-48-48s-48 21.5-48 48s21.5 48 48 48s48-21.5 48-48zM142.9 437c18.7-18.7 18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zm0-294.2c18.7-18.7 18.7-49.1 0-67.9S93.7 56.2 75 75s-18.7 49.1 0 67.9s49.1 18.7 67.9 0zM369.1 437c18.7 18.7 49.1 18.7 67.9 0s18.7-49.1 0-67.9s-49.1-18.7-67.9 0s-18.7 49.1 0 67.9z"/></svg></span>
-                            </div>
-                        </div>
+                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
                     </form>
-                    <div id="mdbook-searchresults-outer" class="searchresults-outer hidden">
-                        <div id="mdbook-searchresults-header" class="searchresults-header"></div>
-                        <ul id="mdbook-searchresults">
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
                         </ul>
                     </div>
                 </div>
 
                 <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
                 <script>
-                    document.getElementById('mdbook-sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
-                    document.getElementById('mdbook-sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
-                    Array.from(document.querySelectorAll('#mdbook-sidebar a')).forEach(function(link) {
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
                         link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
                     });
                 </script>
 
-                <div id="mdbook-content" class="content">
+                <div id="content" class="content">
                     <main>
                         <h1 id="raid-night"><a class="header" href="#raid-night">Raid Night</a></h1>
 <p>Collection of resources to finally make us an effecive fireteam</p>
 <h2 id="raids"><a class="header" href="#raids">Raids</a></h2>
 <p>Each week two raids are featured. Featured raids will give guaranteed red borders and tier 5 armor when completed on standard difficulty. This is the rotation order:</p>
 <ul>
-<li><a href="#vow-of-the-disciple">Vow of the Disciple</a></li>
-<li><a href="#last-wish">Last Wish</a></li>
-<li><a href="#kings-fall">King’s Fall</a></li>
-<li><a href="#garden-of-salvation">Garden of Salvation</a></li>
-<li><a href="#root-of-nightmares">Root of Nightmares</a></li>
-<li><a href="#deep-stone-crypt">Deepstone Crypt</a></li>
-<li><a href="#crotas-end">Crota’s End</a></li>
-<li><a href="#vault-of-glass">Vault of Glass</a></li>
-<li><a href="#salvations-edge">Salvation’s Edge</a></li>
+<li><a href="./raids/vow-of-the-disciple.html">Vow of the Disciple</a></li>
+<li><a href="./raids/last-wish.html">Last Wish</a></li>
+<li><a href="./raids/kings-fall.html">King's Fall</a></li>
+<li><a href="./raids/garden-of-salvation.html">Garden of Salvation</a></li>
+<li><a href="./raids/root-of-nightmares.html">Root of Nightmares</a></li>
+<li><a href="./raids/deep-stone-crypt.html">Deep Stone Crypt</a></li>
+<li><a href="./raids/crotas-end.html">Crota's End</a></li>
+<li><a href="./raids/vault-of-glass.html">Vault of Glass</a></li>
+<li><a href="./raids/salvations-edge.html">Salvation's Edge</a></li>
 </ul>
 <h2 id="resources"><a class="header" href="#resources">Resources</a></h2>
 <h4 id="dim"><a class="header" href="#dim"><a href="https://destinyitemmanager.com/">DIM</a></a></h4>
@@ -197,29 +197,49 @@
 <p>Light.gg is a destiny database. I use it to find what the most popular perk combinations on weapons. I also use it to find what weapons are popular and where to get them from. Popular weapons are typically good weapons.</p>
 <h4 id="destinyreport"><a class="header" href="#destinyreport"><a href="https://destiny.report/">Destiny.report</a></a></h4>
 <p>Destiny.report is another destiny database, but more focused on weapons. I use it to find weapons that synergize with my builds or for niche situations.</p>
-<p>For example, I typically run a solar hunter build for the caretaker encounter in Vow of the Disciple, and I am usually on stun duty. I wanted a gun that has incandescent to synergize with my build, has good range to help clear ads between stuns, deals anti-barrier damage for the vandals, and with heal clip for better survivability. Very niche, but searching <a href="https://destiny.report/?q=breaker%3Abarrier+perk1%3A%22heal+clip%22+perk2%3Aincandescent+is%3Aprimary"><code>perk1:healclip perk2:incandescent breaker:barrier ammo:primary</code></a> led me to the pulse rifle “adhortative” or the handcannon “epochal integration”.</p>
+<p>For example, I typically run a solar hunter build for the caretaker encounter in Vow of the Disciple, and I am usually on stun duty. I wanted a gun that has incandescent to synergize with my build, has good range to help clear ads between stuns, deals anti-barrier damage for the vandals, and with heal clip for better survivability. Very niche, but searching <a href="https://destiny.report/?q=breaker%3Abarrier+perk1%3A%22heal+clip%22+perk2%3Aincandescent+is%3Aprimary"><code>perk1:healclip perk2:incandescent breaker:barrier ammo:primary</code></a> led me to the pulse rifle "adhortative" or the handcannon "epochal integration".</p>
 <h4 id="destiny-power-bars"><a class="header" href="#destiny-power-bars"><a href="https://destiny-power-bars.corke.dev/">Destiny Power Bars</a></a></h4>
 <p>Power bars is a tool to track your power level, and identify which pieces of gear to focus to level up faster.</p>
 <h4 id="stacking-buffsdebuffs-sheet"><a class="header" href="#stacking-buffsdebuffs-sheet"><a href="https://docs.google.com/spreadsheets/d/1i1KUwgVkd8qhwYj481gkV9sZNJQCE-C3Q-dpQutPCi4/edit?gid=2073397587#gid=2073397587">Stacking Buffs/Debuffs Sheet</a></a></h4>
 <p>This google sheet explains the various different types of buffs and debuffs that you can stack to maximize your damage.</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="crotas-end"><a class="header" href="#crotas-end">Crota’s End</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="crotas-end"><a class="header" href="#crotas-end">Crota's End</a></h1>
 <p>Coming soon</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="deep-stone-crypt"><a class="header" href="#deep-stone-crypt">Deep Stone Crypt</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="deep-stone-crypt"><a class="header" href="#deep-stone-crypt">Deep Stone Crypt</a></h1>
 <h2 id="chilly-sparrows"><a class="header" href="#chilly-sparrows">Chilly Sparrows</a></h2>
-<p>It is cold out. If you are outside of the warm bubble shelters, you will collect stacks of a “Frostbite” buff. If it gets to 10 stacks, you will die. Each bubble shelter will have fallen ads to clear while you are recovering from the cold.</p>
-<p>Hop from bubble to bubble, clearing ads as you go. You can follow the lights in game to guide you to the next bubble, or follow this map:</p>
+<p>It is cold out. If you are outside of the warm bubble shelters, you will collect stacks of a "Frostbite" buff. Each bubble shelter will have fallen adds to clear while you are recovering from the cold.</p>
+<div id="admonition-frostbite" class="admonition admonish-danger" role="note" aria-labelledby="admonition-frostbite-title">
+<div class="admonition-title">
+<div id="admonition-frostbite-title">
+<p>Frostbite</p>
+</div>
+<a class="admonition-anchor-link" href="raids/deep-stone-crypt.html#admonition-frostbite"></a>
+</div>
+<div>
+<p>Getting to 10 stacks of Frostbite kills you.</p>
+</div>
+</div>
+<p>Hop from bubble to bubble, clearing adds as you go. You can follow the lights in game to guide you to the next bubble, or follow this map:</p>
 <h4 id="encounter-map"><a class="header" href="#encounter-map">Encounter Map</a></h4>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/dsc-sparrow-map.webp" alt="sparrow map"><span class="img-wrapper"><img src="resources/dsc-sparrow-map.webp" alt="sparrow map"></span></label></p>
+<p><img src="raids/../resources/dsc-sparrow-map.webp" alt="sparrow map" /></p>
 <h2 id="disabling-crypt-security"><a class="header" href="#disabling-crypt-security">Disabling Crypt Security</a></h2>
 <h3 id="layout"><a class="header" href="#layout">Layout</a></h3>
 <p>There are two sides to this area: a light and a dark side. Once a player claims the operator buff, the encounter begins and the doors that connect the two sides will close. In the center of the two rooms there are six fuses, three on the light side and three on the dark side. There is also a basement area with 10 panels, five on the dark half and five on the light half.</p>
 <h3 id="mechanics"><a class="header" href="#mechanics">Mechanics</a></h3>
-<p>This encounter deals with juggling an operator and a scanner buff, similar to Vesper’s Host. The buffs do not time out and they can be passed around using the terminal. Depositing a buff in one terminal makes it available in all terminals.</p>
-<p>There are overload champions in this encounter, be sure to have weapons that stun overloads equipped.</p>
+<p>This encounter deals with juggling an operator and a scanner buff, similar to Vesper's Host. The buffs do not time out and they can be passed around using the terminal. Depositing a buff in one terminal makes it available in all terminals.</p>
+<p>There are overload champions in this encounter. Be sure to have weapons that stun overloads equipped.</p>
 <h5 id="operator"><a class="header" href="#operator">Operator</a></h5>
-<p>The operator buff enables a player to shoot panels. Shooting the panels by the doors will open the doors that connect the dark and the light side. When only the operator is in the central room, they can shoot the panel that takes them to the basement. In the basement there are 10 panels to shoot. Shooting the correct panels will start damage phase. Shooting the wrong one causes the operator to wipe.</p>
+<p>The operator buff enables a player to shoot panels. Shooting the panels by the doors will open the doors that connect the dark and the light side. When only the operator is in the central room, they can shoot the panel that takes them to the basement. In the basement there are 10 panels to shoot. Shooting the correct panels will start damage phase.</p>
+<div id="admonition-basement-panels" class="admonition admonish-warning" role="note" aria-labelledby="admonition-basement-panels-title">
+<div class="admonition-title">
+<div id="admonition-basement-panels-title">
+<p>Basement panels</p>
+</div>
+<a class="admonition-anchor-link" href="raids/deep-stone-crypt.html#admonition-basement-panels"></a>
+</div>
+<div>
+<p>Shooting the wrong panel wipes the operator. Wait for the scanner's callout before shooting.</p>
+</div>
+</div>
 <h5 id="scanner"><a class="header" href="#scanner">Scanner</a></h5>
 <p>The scanner lets a player see which panels need to be shot as well as which fuse to damage.</p>
 <h5 id="servitors"><a class="header" href="#servitors">Servitors</a></h5>
@@ -229,25 +249,59 @@
 <h4 id="basement-dweller"><a class="header" href="#basement-dweller">Basement Dweller</a></h4>
 <p>To start, the basement dweller will pick up the operator buff to start the encounter. The operator will wait until someone else has the scanner buff, and then they will go down to the basement. The scanner will call out which panels the basement dweller needs to shoot. There should be two on either side. When all four are hit, the basement dweller will deposit the operator buff in the terminal in the basement and then wait for the scanner buff to become available. Once they get the scanner buff, they will run around the central terminal and call out which fuse to shoot (dark left, dark middle, dark right, light left, light middle, or light right) until either all six fuses are destroyed or damage phase ends. Once it ends, the basement dweller will rotate back to the top.</p>
 <h4 id="top-dogs"><a class="header" href="#top-dogs">Top Dogs</a></h4>
-<p>Players staying up top on either the light or the dark side will have roughly the same job. They will clear ads, prioritizing the servitors. Once the scanner vandal spawns, they kill it and pick up the buff. The scanner looks through the windows in the floor to identify the two glowing panels on their side. Once they call both of them out (or type it into game chat), they deposit the scanner buff in the terminal. A player on the opposite side will then pick the scanner buff up and call out their two panels. The operator will then shoot those panels in the basement and deposit the operator buff. A player upstairs needs to pick up the operator buff from the terminal so that the scanner can deposit their buff to send it to the basement. The guardian in the basement will then call out which fuse to shoot. All players should be shooting fuses. If the wrong one is hit, the team wipes. Once all six fuses are destroyed, the encounter is over. If we aren’t able to one-phase the fuses, then the player with the operator buff will open the door to let the basement player back up, and the operator will then rotate down to do the basement player’s role.</p>
+<p>Players staying up top on either the light or the dark side will have roughly the same job. They will clear adds, prioritizing the servitors. Once the scanner vandal spawns, they kill it and pick up the buff. The scanner looks through the windows in the floor to identify the two glowing panels on their side. Once they call both of them out (or type it into game chat), they deposit the scanner buff in the terminal. A player on the opposite side will then pick the scanner buff up and call out their two panels. The operator will then shoot those panels in the basement and deposit the operator buff. A player upstairs needs to pick up the operator buff from the terminal so that the scanner can deposit their buff to send it to the basement. The guardian in the basement will then call out which fuse to shoot. All players should be shooting fuses.</p>
+<div id="admonition-fuses" class="admonition admonish-warning" role="note" aria-labelledby="admonition-fuses-title">
+<div class="admonition-title">
+<div id="admonition-fuses-title">
+<p>Fuses</p>
+</div>
+<a class="admonition-anchor-link" href="raids/deep-stone-crypt.html#admonition-fuses"></a>
+</div>
+<div>
+<p>Hitting the wrong fuse wipes the team. Only shoot the fuse that's been called out.</p>
+</div>
+</div>
+<p>Once all six fuses are destroyed, the encounter is over. If we aren't able to one-phase the fuses, then the player with the operator buff will open the door to let the basement player back up, and the operator will then rotate down to do the basement player's role.</p>
 <h4 id="encounter-map-1"><a class="header" href="#encounter-map-1">Encounter Map</a></h4>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/dsc-disabling-security-map.avif" alt="crypt security map"><span class="img-wrapper"><img src="resources/dsc-disabling-security-map.avif" alt="crypt security map"></span></label></p>
+<p><img src="raids/../resources/dsc-disabling-security-map.avif" alt="crypt security map" /></p>
 <h2 id="atraks-1-the-fallen-exo"><a class="header" href="#atraks-1-the-fallen-exo">Atraks-1, the Fallen Exo</a></h2>
 <h3 id="mechanics-1"><a class="header" href="#mechanics-1">Mechanics</a></h3>
-<p>We will be attemt the one-phase. Doing this skips a lot of mechanics and makes it very straightforward. Everyone should have Parasite equipped and a burst damage super (hunters use blade barrage, titans use thundercrash, and warlocks use nova bomb). The damage phase is very short.</p>
-<p>When all of the Atraks starts glowing white, the guardian with the scanner buff needs to identify which Atraks is the one to kill. As soon as anyone does damage, the timer to do damage starts ticking down. It is very important we all start damage at the exact same time, so wait for someone to count it out.</p>
+<p>We will be attempting the one-phase. Doing this skips a lot of mechanics and makes it very straightforward. Everyone should have Parasite equipped and a burst damage super (hunters use blade barrage, titans use thundercrash, and warlocks use nova bomb). The damage phase is very short.</p>
+<p>When all of the Atraks starts glowing white, the guardian with the scanner buff needs to identify which Atraks is the one to kill. As soon as anyone does damage, the timer to do damage starts ticking down.</p>
+<div id="admonition-damage-timing" class="admonition admonish-tip" role="note" aria-labelledby="admonition-damage-timing-title">
+<div class="admonition-title">
+<div id="admonition-damage-timing-title">
+<p>Damage timing</p>
+</div>
+<a class="admonition-anchor-link" href="raids/deep-stone-crypt.html#admonition-damage-timing"></a>
+</div>
+<div>
+<p>Everyone must start damage at exactly the same time. Wait for someone to count it out before you shoot.</p>
+</div>
+</div>
 <h3 id="team-breakdown-1"><a class="header" href="#team-breakdown-1">Team Breakdown</a></h3>
 <h5 id="basement-dwellers"><a class="header" href="#basement-dwellers">Basement Dwellers</a></h5>
-<p>Two guardians will hang out downstairs. Their job is to clear ads and get their parasite stacks to x20. They will kill all three servitors and then head up to join the guardians in space.</p>
+<p>Two guardians will hang out downstairs. Their job is to clear adds and get their parasite stacks to x20. They will kill all three servitors and then head up to join the guardians in space.</p>
 <h5 id="top-dogs-1"><a class="header" href="#top-dogs-1">Top Dogs</a></h5>
 <p>The rest of the fireteam heads upstairs. If a player with an operator buff goes to space, be sure to send some pods back to the ground for the rest of the team to join you. Everyone needs to get their parasite stacks to x20. Kill 2/3 servitors, but wait until the guardians down below join you to kill the last one.</p>
 <h5 id="all-together"><a class="header" href="#all-together">All Together</a></h5>
-<p>Once everyone is upstairs and has x20 parasite stacks, kill the last servitor. The scanner will then identify the Atraks to dps and call it out. Everyone gather around and wait for the countdown. Once it is time, everyone drop their parasite and half the team should use their super. If this doesn’t get us to the damage gate, wipe and try again.</p>
+<p>Once everyone is upstairs and has x20 parasite stacks, kill the last servitor. The scanner will then identify the Atraks to dps and call it out. Everyone gather around and wait for the countdown. Once it is time, everyone drop their parasite and half the team should use their super. If this doesn't get us to the damage gate, wipe and try again.</p>
 <p>Atraks will reset and start doing his wipe mechanic again. The scanner needs to call out which one to damage, and once again all guardians will damage that Atraks at the same time, with the rest of the supers being used.</p>
 <h2 id="taniks-reborn---rapture"><a class="header" href="#taniks-reborn---rapture">Taniks, Reborn - Rapture</a></h2>
 <h3 id="mechanics-2"><a class="header" href="#mechanics-2">Mechanics</a></h3>
-<p>In this encounter there are three buffs: scanner, operator, and suppressor. The goal is to collect nuclear cores and deposit them in the correct bucket. Holding a nuclear core gives you a radiation buff. If you get to radiation x10, you die. Pass the nuclear core onto a different guardian or deposit it in the correct bucket to get rid of your radiation buff.</p>
-<p>After each round of depositing cores, one players buff will become disabled. They need to deposit it in the terminal, and another player will need to pick it up and rotate into their role.</p>
+<p>In this encounter there are three buffs: scanner, operator, and suppressor. The goal is to collect nuclear cores and deposit them in the correct bucket. Holding a nuclear core gives you a radiation buff. Pass the nuclear core onto a different guardian or deposit it in the correct bucket to get rid of your radiation buff.</p>
+<div id="admonition-radiation" class="admonition admonish-danger" role="note" aria-labelledby="admonition-radiation-title">
+<div class="admonition-title">
+<div id="admonition-radiation-title">
+<p>Radiation</p>
+</div>
+<a class="admonition-anchor-link" href="raids/deep-stone-crypt.html#admonition-radiation"></a>
+</div>
+<div>
+<p>Radiation x10 kills you. Don't hold a nuclear core too long.</p>
+</div>
+</div>
+<p>After each round of depositing cores, one player's buff will become disabled. They need to deposit it in the terminal, and another player will need to pick it up and rotate into their role.</p>
 <p>Once enough cores have been deposited, the middle floor will open and everyone must enter it and race to the end. If you are too slow, Taniks will catch you and do mean things to you.</p>
 <h3 id="team-breakdown-2"><a class="header" href="#team-breakdown-2">Team Breakdown</a></h3>
 <h5 id="scanner-1"><a class="header" href="#scanner-1">Scanner</a></h5>
@@ -257,36 +311,46 @@
 <h5 id="suppressor"><a class="header" href="#suppressor">Suppressor</a></h5>
 <p>Suppressor picks up the suppressor buff. Before the nuclear cores can be deposited, the suppressor needs to stun Taniks. They can do this by shooting him from each of the three drones.</p>
 <h5 id="everyone-else"><a class="header" href="#everyone-else">Everyone else</a></h5>
-<p>Clear ads, help juggle and deposit the nuclear cores, and be ready to switch into any of the other roles once a buff is disabled.</p>
+<p>Clear adds, help juggle and deposit the nuclear cores, and be ready to switch into any of the other roles once a buff is disabled.</p>
 <h4 id="encounter-map-2"><a class="header" href="#encounter-map-2">Encounter Map</a></h4>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/dsc-taniks-reborn-map.png" alt="rapture encounter map"><span class="img-wrapper"><img src="resources/dsc-taniks-reborn-map.png" alt="rapture encounter map"></span></label></p>
+<p><img src="raids/../resources/dsc-taniks-reborn-map.png" alt="rapture encounter map" /></p>
 <h2 id="taniks-the-abomination"><a class="header" href="#taniks-the-abomination">Taniks, the Abomination</a></h2>
 <h3 id="mechanics-3"><a class="header" href="#mechanics-3">Mechanics</a></h3>
-<p>This encounter is basically the same as the last encounter, except depositing four nuclear cores starts a damage phase, the area is larger, and the operator’s role is slightly different.</p>
-<p>Instead of the operator spawning the nuclear cores, everyone can spawn the nuclear cores by shooting Tanik’s wings.</p>
+<p>This encounter is basically the same as the last encounter, except depositing four nuclear cores starts a damage phase, the area is larger, and the operator's role is slightly different.</p>
+<p>Instead of the operator spawning the nuclear cores, everyone can spawn the nuclear cores by shooting Taniks' wings.</p>
 <p>The operator now shoots trapped nuclear core carriers to release them.</p>
-<p>For damage, there will be two rings around Taniks. Stand inside the outer ring, but outside the inner ring. Once you get him low enough, he enters an enrage phase. In his enrage he teleports around the arena. Chase him down and do DPS. This is a damage check, if we don’t put out enough damage we will wipe.</p>
+<p>For damage, there will be two rings around Taniks. Stand inside the outer ring, but outside the inner ring. Once you get him low enough, he enters an enrage phase. In his enrage he teleports around the arena. Chase him down and do DPS.</p>
+<div id="admonition-damage-check" class="admonition admonish-warning" role="note" aria-labelledby="admonition-damage-check-title">
+<div class="admonition-title">
+<div id="admonition-damage-check-title">
+<p>Damage check</p>
+</div>
+<a class="admonition-anchor-link" href="raids/deep-stone-crypt.html#admonition-damage-check"></a>
+</div>
+<div>
+<p>This is a hard damage check. Not enough DPS in the phase wipes the team.</p>
+</div>
+</div>
 <h4 id="encounter-map-3"><a class="header" href="#encounter-map-3">Encounter Map</a></h4>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/dsc-taniks-abomination-map.webp" alt="taniks abomination encounter map"><span class="img-wrapper"><img src="resources/dsc-taniks-abomination-map.webp" alt="taniks abomination encounter map"></span></label></p>
+<p><img src="raids/../resources/dsc-taniks-abomination-map.webp" alt="taniks abomination encounter map" /></p>
 <h2 id="rick-kackis"><a class="header" href="#rick-kackis">Rick Kackis</a></h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/05vQIHhBmr4" title="Destiny 2: DEEP STONE CRYPT RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe><div style="break-before: page; page-break-before: always;"></div>
-<h1 id="garden-of-salvation"><a class="header" href="#garden-of-salvation">Garden of Salvation</a></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/05vQIHhBmr4" title="Destiny 2: DEEP STONE CRYPT RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><div style="break-before: page; page-break-before: always;"></div><h1 id="garden-of-salvation"><a class="header" href="#garden-of-salvation">Garden of Salvation</a></h1>
 <h2 id="first-encounter-embrace"><a class="header" href="#first-encounter-embrace">First Encounter: Embrace</a></h2>
 <p>Split into two teams of three.</p>
 <p><strong>Team with boss:</strong></p>
 <ul>
-<li>Kill Ads</li>
+<li>Kill adds</li>
 <li>Stay alive</li>
 <li>Alternate picking up the spit. If no one can pick up the spit, someone with the voltaic overflow buff can pick it up and be revived.</li>
 </ul>
 <p><strong>Team without boss:</strong></p>
 <ul>
-<li>Clear ads</li>
+<li>Clear adds</li>
 <li>Make sure everyone has overload</li>
 <li>Kill angelic hydra</li>
 <li>Connect chain to door</li>
 </ul>
-<p>Play leapfrog until the encounter is completed. Follow the boss along the ridge picking up spit as you go. Kill cyclopes to survive. Rockets, void resist, and concussive dampener may help survivability here</p>
+<p>Play leapfrog until the encounter is completed. Follow the boss along the ridge picking up spit as you go. Kill cyclopes to survive. Rockets, void resist, and concussive dampener may help survivability here.</p>
 <h2 id="second-encounter-undergrowth"><a class="header" href="#second-encounter-undergrowth">Second Encounter: Undergrowth</a></h2>
 <ul>
 <li>One guardian on each conflux to defend them.</li>
@@ -299,12 +363,12 @@
 <li>Floaters rotate over to the angelic to help kill it</li>
 <li>Once angelic is killed, they tether to the conflux to give the enlightened buff</li>
 </ul>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/gos-conflux-map.png" alt="conflux map"><span class="img-wrapper"><img src="resources/gos-conflux-map.png" alt="conflux map"></span></label></p>
+<p><img src="raids/../resources/gos-conflux-map.png" alt="conflux map" /></p>
 <h2 id="third-encounter-consecrated-mind"><a class="header" href="#third-encounter-consecrated-mind">Third Encounter: Consecrated Mind</a></h2>
 <p>Once again split into two teams of three</p>
 <p><strong>Mote Collectors:</strong></p>
 <ul>
-<li>kill Minotaurs to collect motes. A single guardian should collect motes at a time.</li>
+<li>Kill Minotaurs to collect motes. A single guardian should collect motes at a time.</li>
 <li>Once a guardian has 10 motes, deposit in the bank. They will get the enlightened buff and should focus on breaking shields</li>
 <li>The next guardian should then start collecting</li>
 <li>Once 30 motes are deposited, damage phase starts.</li>
@@ -314,14 +378,25 @@
 <li>Follow consecrated mind</li>
 <li>Alternate collecting spit</li>
 <li>Whoever collects spit, calls out whether the inner or outer eyes are glowing</li>
-<li>Fireteam shoots the three eyes. DONT USE SNIPER</li>
+<li>Fireteam shoots the three eyes.</li>
 </ul>
-<p>If all three spit collectors have the buff, they will need to rotate one person out with the more collectors.</p>
-<p>For DPS, follow the boss down the hall as you damage to ensure you don’t get stuck behind the wall</p>
+<div id="admonition-weapon-choice" class="admonition admonish-warning" role="note" aria-labelledby="admonition-weapon-choice-title">
+<div class="admonition-title">
+<div id="admonition-weapon-choice-title">
+<p>Weapon choice</p>
+</div>
+<a class="admonition-anchor-link" href="raids/garden-of-salvation.html#admonition-weapon-choice"></a>
+</div>
+<div>
+<p>Don't use a sniper rifle on the eyes.</p>
+</div>
+</div>
+<p>If all three spit collectors have the buff, they will need to rotate one person out with the mote collectors.</p>
+<p>For DPS, follow the boss down the hall as you damage to ensure you don’t get stuck behind the wall.</p>
 <h2 id="fourth-encounter-sanctified-mind"><a class="header" href="#fourth-encounter-sanctified-mind">Fourth Encounter: Sanctified Mind</a></h2>
-<p>Split into three teams of two. Two teams are “mote collectors” and one team is “builders”</p>
+<p>Split into three teams of two. Two teams are “mote collectors” and one team is “builders”.</p>
 <ol>
-<li>Clear ads</li>
+<li>Clear adds</li>
 <li>Shoot the knee or shoulder to open a portal</li>
 <li>Two guardians enter and collect motes. Once they are done, shoot the same knee/shoulder to bring them back and send the next two through.</li>
 <li>Repeat until 30 motes are deposited, then do the same on the other side</li>
@@ -331,39 +406,48 @@
 </ol>
 <p>When a guardian deposits motes, their main goal should then be to clear the shields because they will have the enlightened buff.</p>
 <h2 id="rick-kackis-1"><a class="header" href="#rick-kackis-1">Rick Kackis</a></h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/froVY9nlLCc" title="Destiny 2: GARDEN OF SALVATION RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe><div style="break-before: page; page-break-before: always;"></div>
-<h1 id="kings-fall"><a class="header" href="#kings-fall">King’s Fall</a></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/froVY9nlLCc" title="Destiny 2: GARDEN OF SALVATION RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><div style="break-before: page; page-break-before: always;"></div><h1 id="kings-fall"><a class="header" href="#kings-fall">King's Fall</a></h1>
 <p>Coming soon</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="last-wish"><a class="header" href="#last-wish">Last Wish</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="last-wish"><a class="header" href="#last-wish">Last Wish</a></h1>
 <p>Coming soon</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="root-of-nightmares"><a class="header" href="#root-of-nightmares">Root of Nightmares</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="root-of-nightmares"><a class="header" href="#root-of-nightmares">Root of Nightmares</a></h1>
 <p>Coming soon</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="salvations-edge"><a class="header" href="#salvations-edge">Salvation’s Edge</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="salvations-edge"><a class="header" href="#salvations-edge">Salvation's Edge</a></h1>
 <p>Coming soon</p>
-<div style="break-before: page; page-break-before: always;"></div>
-<h1 id="vault-of-glass"><a class="header" href="#vault-of-glass">Vault of Glass</a></h1>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="vault-of-glass"><a class="header" href="#vault-of-glass">Vault of Glass</a></h1>
 <h3 id="opening-the-vault"><a class="header" href="#opening-the-vault">Opening the Vault</a></h3>
 <p>There are three plates that need to be captured to build the spire. Two guardians will go to each plate. The plate needs to be stood on until it is completely charged (there will be text in the bottom left of the screen when it is built. If unsure, just keep standing in it). Defend the plate from vex. Minotaurs will disrupt the plate if not dealt with.</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vog-door.png" alt="Door Map"><span class="img-wrapper"><img src="resources/vog-door.png" alt="Door Map"></span></label></p>
+<p><img src="raids/../resources/vog-door.png" alt="Door Map" /></p>
 <h3 id="defending-the-confluxes"><a class="header" href="#defending-the-confluxes">Defending the confluxes</a></h3>
 <p>Confluxes will spawn that need to be defended from vex that attempt to sacrifice themselves. Two guardians will take left, two will take right, and two will take the middle. There are three rounds: conflux in the middle, conflux on either side, and all three confluxes are active.</p>
 <p>This encounter is very straightforward. The only mechanic is to avoid the pools of vex milk dropped by the fanatics when they die. If you touch it, you will be “marked for negation” and need to run to the pool in front of the Templar to be cleansed. It is best if you just don’t get marked for negation. Melee builds are not good here.</p>
 <h3 id="oracles"><a class="header" href="#oracles">Oracles</a></h3>
-<p>There are 5 rounds of oracles. The first round three oracles spawn, then four, then five, then six, and finally all seven. The order of the oracles will be shown twice, and then they will spawn. Oracles need to be killed in order.</p>
+<p>There are 5 rounds of oracles. In the first round, three oracles spawn, then four, then five, then six, and finally all seven. The order of the oracles will be shown twice, and then they will spawn. Oracles need to be killed in order.</p>
 <p>Spawns are shown below:</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vog-templar-oracles-map.png" alt="Oracle Map"><span class="img-wrapper"><img src="resources/vog-templar-oracles-map.png" alt="Oracle Map"></span></label></p>
-<p>Xenophage or a sniper rifle are good for destroying the oracles fast at distance. Three guardians will focus on ad clear, and three will worry about the oracles.</p>
+<p><img src="raids/../resources/vog-templar-oracles-map.png" alt="Oracle Map" /></p>
+<p>Xenophage or a sniper rifle are good for destroying the oracles fast at distance. Three guardians will focus on add clear, and three will worry about the oracles.</p>
 <p>If oracles are destroyed out of order, we will be marked for negation and must all run to the center to be cleansed. We have to step in the cleansing pool at the same time. Someone will count it off.</p>
 <h3 id="templar"><a class="header" href="#templar">Templar</a></h3>
 <p>We finally get to kill the templar. The templar is immune until the relic is used to break its shields. After its shields are broken, the Templar will attempt to teleport. If it teleports, it will reset its shield. A teleport can be prevented by standing where the templar is going to teleport.</p>
-<p>During the encounter, oracles will spawn like before. If they are not destroyed in order in time, they will mark the entire fireteam to be wiped. The mark can be removed by cleansing guardians with the relic</p>
-<p>During the encounter every now and then a random guardian will be selected to be put in a vex cage. Someone else on the team will have to shoot them out..</p>
-<p><strong>Everyone except the relic runner:</strong><br>We will ignore most of the mechanics in this encounter. After rallying, everyone will jump off the edge except the relic runner. When the relic runner calls it out, everyone will respawn and prepare to DPS the templar. Once the Templar’s shield breaks, DPS the boss fast. If the relic runner is put in a cage, someone needs to immediately break them out.</p>
-<p><strong>Relic Runner:</strong><br>Relic runner will pick up the relic and hide until he is marked by the Templar. He will then call out to the rest of the team to respawn, cleanse himself, and pop the Templar’s shield by supering. The relic runner then focuses on preventing Templar teleports.</p>
-<p><strong>DPS:</strong><br>Despite what all the clickbaiting youtube videos say, the specific weapons you use are not as important as stacking buffs and debuffs to get a good damage multiplier. See <a href="https://docs.google.com/spreadsheets/d/1i1KUwgVkd8qhwYj481gkV9sZNJQCE-C3Q-dpQutPCi4/edit?gid=2073397587#gid=2073397587">this sheet</a> for more info. To get good DPS, we should each have a plan to stack the following:</p>
+<p>During the encounter, oracles will spawn like before.</p>
+<div id="admonition-oracle-order" class="admonition admonish-warning" role="note" aria-labelledby="admonition-oracle-order-title">
+<div class="admonition-title">
+<div id="admonition-oracle-order-title">
+<p>Oracle order</p>
+</div>
+<a class="admonition-anchor-link" href="raids/vault-of-glass.html#admonition-oracle-order"></a>
+</div>
+<div>
+<p>If oracles aren't destroyed in order in time, the entire fireteam gets marked to wipe. Cleanse marked guardians with the relic to remove it.</p>
+</div>
+</div>
+<p>During the encounter every now and then a random guardian will be selected to be put in a vex cage. Someone else on the team will have to shoot them out.</p>
+<p><strong>Everyone except the relic runner:</strong><br />
+We will ignore most of the mechanics in this encounter. After rallying, everyone will jump off the edge except the relic runner. When the relic runner calls it out, everyone will respawn and prepare to DPS the templar. Once the Templar’s shield breaks, DPS the boss fast. If the relic runner is put in a cage, someone needs to immediately break them out.</p>
+<p><strong>Relic Runner:</strong><br />
+Relic runner will pick up the relic and hide until he is marked by the Templar. He will then call out to the rest of the team to respawn, cleanse himself, and pop the Templar’s shield by supering. The relic runner then focuses on preventing Templar teleports.</p>
+<p><strong>DPS:</strong><br />
+Despite what all the clickbaiting youtube videos say, the specific weapons you use are not as important as stacking buffs and debuffs to get a good damage multiplier. See <a href="https://docs.google.com/spreadsheets/d/1i1KUwgVkd8qhwYj481gkV9sZNJQCE-C3Q-dpQutPCi4/edit?gid=2073397587#gid=2073397587">this sheet</a> for more info. To get good DPS, we should each have a plan to stack the following:</p>
 <ol>
 <li>Global debuff on the boss</li>
 <li>Empowering buff on yourself</li>
@@ -372,14 +456,14 @@
 <li>Weapon perks</li>
 <li>World activity buff</li>
 </ol>
-<p>I recommend rockets or grenade launchers since the Templar could turn to face the relic runner which makes precision damage difficult. Fusion rifles are also a good option.Our damage buff stacking :</p>
+<p>I recommend rockets or grenade launchers since the Templar could turn to face the relic runner which makes precision damage difficult. Fusion rifles are also a good option. Our damage buff stacking:</p>
 <ol>
 <li>Deadfall tether (35% debuff) or one person with particle reconstruction and a fusion rifle (27.6%) [global debuff]</li>
 <li>Well of radiance (25% buff) [empowering buff]</li>
 <li>Three weapon surges of the elemental type of your heavy weapon (22%) [weapon surges]</li>
 <li>Get your weapon stat as high as possible on your armor. (200 stat is a 20% buff to heavy weapons) [amplification modifier]</li>
 <li>Bait and Switch (35%), Explosive Light (~25%), or vorpal weapon (20%) are good options [weapon perk]</li>
-<li>Could be an elemental type or a weapon archetype. (25%) (Looks like there isn’t one for weekly raid)</li>
+<li>Could be an elemental type or a weapon archetype. (25%) (Looks like there isn’t one for the weekly raid)</li>
 </ol>
 <p>Solid weapons choices include:</p>
 <ul>
@@ -389,22 +473,38 @@
 <li>VS chill inhibitor (curated god roll can be picked up for free from banshee in the tower)</li>
 <li>Hothead (adept) (curated god roll can be picked up for free from banshee in the tower)</li>
 </ul>
-<p>If we have a well, deadfall tether, and I use VS chill inhibitor with bait and switch,have 200 weapons stat, and use 3 stasis surges, I will do 334% damage. VS chill inhibitor also has “envious arsenal” which reloads the weapon for you when you do damage with your other two weapons, which also will reset your bait and switch. This does not include other damaging artifact perks like “kinetic impacts”.</p>
+<p>If we have a well, deadfall tether, and I use VS chill inhibitor with bait and switch, have 200 weapons stat, and use 3 stasis surges, I will do 334% damage. VS chill inhibitor also has “envious arsenal” which reloads the weapon for you when you do damage with your other two weapons, which also will reset your bait and switch. This does not include other damaging artifact perks like “kinetic impacts”.</p>
 <p>Bait and switch is the hardest damage perk to get set up here. If you are not confident, just use the adept hothead with clown cartridge for good DPS.</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vog-templar-oracles-map.png" alt="Templar Map"><span class="img-wrapper"><img src="resources/vog-templar-oracles-map.png" alt="Templar Map"></span></label></p>
+<p><img src="raids/../resources/vog-templar-oracles-map.png" alt="Templar Map" /></p>
 <h3 id="gorgons-maze"><a class="header" href="#gorgons-maze">Gorgon’s Maze</a></h3>
-<p>The Gorgon’s maze is a stealth section. The goal is to make it through to the exit without any member of the fireteam being seen. If someone is seen, the entire team wipes. It is possible to kill a Gorgon, but each time one is killed, all the others become stronger. Ideally we won’t be seen at all.</p>
-<p><strong>Mechanics:</strong><br>One invis hunter should run through and shoot the three vex cubes to open the secret chest. We then will move as a fireteam to the chest. Hunters will run omnioculus and make the entire team invisible to pass the two gorgons on the way.</p>
+<p>The Gorgon’s maze is a stealth section. The goal is to make it through to the exit without any member of the fireteam being seen.</p>
+<div id="admonition-stay-hidden" class="admonition admonish-danger" role="note" aria-labelledby="admonition-stay-hidden-title">
+<div class="admonition-title">
+<div id="admonition-stay-hidden-title">
+<p>Stay hidden</p>
+</div>
+<a class="admonition-anchor-link" href="raids/vault-of-glass.html#admonition-stay-hidden"></a>
+</div>
+<div>
+<p>If someone is seen, the entire team wipes.</p>
+</div>
+</div>
+<p>It is possible to kill a Gorgon, but each time one is killed, all the others become stronger. Ideally we won’t be seen at all.</p>
+<p><strong>Mechanics:</strong><br />
+One invis hunter should run through and shoot the three vex cubes to open the secret chest. We then will move as a fireteam to the chest. Hunters will run omnioculus and make the entire team invisible to pass the two gorgons on the way.</p>
 <p>Once we have the chest, we can wipe and then run the blue path to the exit. Hunters will again make everyone invisible.</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vog-gorgons-maze.png" alt="Gorgon’s maze map"><span class="img-wrapper"><img src="resources/vog-gorgons-maze.png" alt="Gorgon’s maze map"></span></label></p>
+<p><img src="raids/../resources/vog-gorgons-maze.png" alt="Gorgon&#39;s maze map" /></p>
 <h3 id="gatekeeper"><a class="header" href="#gatekeeper">Gatekeeper</a></h3>
-<p>This is the throne room, the final room of the raid. There is a portal on either side of the room. When the portals are open, they take you to mirrored versions of the throne. The left portal is Mars and the right portal is Venus. Mars is red and dusty while Venus has lots of greenery.The portals are opened by standing on the plates on either side.</p>
+<p>This is the throne room, the final room of the raid. There is a portal on either side of the room. When the portals are open, they take you to mirrored versions of the throne. The left portal is Mars and the right portal is Venus. Mars is red and dusty while Venus has lots of greenery. The portals are opened by standing on the plates on either side.</p>
 <p>The goal of this encounter is to defend the confluxes from vex minotaurs like before. There is one conflux on Mars, one on Venus, and then later one in the center of the throne room. The minotaurs will have an immunity shield that can only be broken by the relic shield.</p>
 <p>Spawn the relic and enable the portals by killing the gatekeeper.</p>
-<p><strong>Portal Openers:</strong><br>One guardian will need to stand on the Venus plate and one will stand on the Mars plate. They will be defending the plate from overload minotaurs to keep the portals open. Occasionally the gatekeeper hydra will spawn again and disable the portals. It needs to be killed as soon as possible to re-open the portals.</p>
-<p><strong>Relic Runners:</strong><br>The relic will need to be moved between the different dimensions. Going through a portal with the relic will give the “teleport destabilized” buff that prevents the guardian from going through a portal again for a time. The relic will need to be juggled by the relic runners.</p>
+<p><strong>Portal Openers:</strong><br />
+One guardian will need to stand on the Venus plate and one will stand on the Mars plate. They will be defending the plate from overload minotaurs to keep the portals open. Occasionally the gatekeeper hydra will spawn again and disable the portals. It needs to be killed as soon as possible to re-open the portals.</p>
+<p><strong>Relic Runners:</strong><br />
+The relic will need to be moved between the different dimensions. Going through a portal with the relic will give the “teleport destabilized” buff that prevents the guardian from going through a portal again for a time. The relic will need to be juggled by the relic runners.</p>
 <p>The other four guardians will be relic runners. One will enter Mars and one will enter Venus. They will call out when they have a minotaur that needs its shield broken. The first relic holder will pick up the relic after the gatekeeper is killed. They will enter the portal with the minotaur, break its shield, and then drop the relic to the other guardian inside the portal. That guardian will then take the relic back to the throne room and drop it to the next relic runner, who will then bring it into the other portal. We continue moving the relic from side to side until the two confluxes disappear.</p>
-<p><strong>The Third Conflux:</strong><br>After six(?) rounds of juggling the relic, the two confluxes in the portals will disappear and a third will appear in the throne room. Everyone moves there and defends the final conflux until a chest appears.</p>
+<p><strong>The Third Conflux:</strong><br />
+After six(?) rounds of juggling the relic, the two confluxes in the portals will disappear and a third will appear in the throne room. Everyone moves there and defends the final conflux until a chest appears.</p>
 <h3 id="atheon"><a class="header" href="#atheon">Atheon:</a></h3>
 <p>Atheon will open the timestream and teleport three guardians to either Mars or Venus. Oracles will appear, but they need to be destroyed in the correct order that only people in the throne room can see. While in either Mars or Venus, a darkness buff will cover your entire screen making it impossible to see unless cleansed with the relic. Once picked up, the relic can not be dropped for more than a few seconds. After all the oracles are destroyed, Atheon becomes vulnerable and after a minute or so will choose a random guardian to give the containment buff.</p>
 <p><strong>Teleported Guardians:</strong></p>
@@ -421,38 +521,71 @@
 <p><strong>Not-teleported Guardians:</strong></p>
 <ul>
 <li>One guardian goes to the back of the room and watches the order of the oracles and calls them out. They will show the pattern twice before appearing. There are three rounds of this.</li>
-<li>One guardian opens up the portal to the side the teleported guardians calls out and clears ads</li>
-<li>The last guardian just clears ads. Focus primarily on ads on the side that the opened portal is on, as we will DPS from that side</li>
+<li>One guardian opens up the portal to the side the teleported guardians calls out and clears adds</li>
+<li>The last guardian just clears adds. Focus primarily on adds on the side that the opened portal is on, as we will DPS from that side</li>
 <li>After the third round of oracles, get in position for DPS</li>
 </ul>
 <p><strong>DPS:</strong></p>
 <ul>
 <li>Follow the same loadout recommendations from the Templar section</li>
-<li>One person will get the containment buff and needs to move away from the group. Moving towards Atheon lets the fireteam free you without interrupting DPS too much. IT IS VERY IMPORTANT THIS GUARDIAN SEPARATES THEMSELVES FROM THE GROUP, SO PAY ATTENTION IF YOU HAVE IT.</li>
+<li>One person will get the containment buff and needs to move away from the group. Moving towards Atheon lets the fireteam free you without interrupting DPS too much.</li>
 <li>Damage the boss</li>
 </ul>
-<p>Oracle callouts:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vog-atheon-oracles-map.png" alt="Oracle callouts"><span class="img-wrapper"><img src="resources/vog-atheon-oracles-map.png" alt="Oracle callouts"></span></label></p>
-<p>Another perspective:<br><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vog-atheon-oracles-pov.png" alt="Oracle POV"><span class="img-wrapper"><img src="resources/vog-atheon-oracles-pov.png" alt="Oracle POV"></span></label></p>
+<div id="admonition-containment-buff" class="admonition admonish-tip" role="note" aria-labelledby="admonition-containment-buff-title">
+<div class="admonition-title">
+<div id="admonition-containment-buff-title">
+<p>Containment buff</p>
+</div>
+<a class="admonition-anchor-link" href="raids/vault-of-glass.html#admonition-containment-buff"></a>
+</div>
+<div>
+<p>Whoever gets the containment buff must separate from the group immediately. Pay attention if you have it.</p>
+</div>
+</div>
+<p>Oracle callouts:<br />
+<img src="raids/../resources/vog-atheon-oracles-map.png" alt="Oracle callouts" /></p>
+<p>Another perspective:<br />
+<img src="raids/../resources/vog-atheon-oracles-pov.png" alt="Oracle POV" /></p>
 <h2 id="rick-kackis-2"><a class="header" href="#rick-kackis-2">Rick Kackis</a></h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/o4Ac6s2OA3g" title="Destiny 2: VAULT OF GLASS RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe><div style="break-before: page; page-break-before: always;"></div>
-<h1 id="vow-of-the-disciple"><a class="header" href="#vow-of-the-disciple">Vow of the Disciple</a></h1>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o4Ac6s2OA3g" title="Destiny 2: VAULT OF GLASS RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><div style="break-before: page; page-break-before: always;"></div><h1 id="vow-of-the-disciple"><a class="header" href="#vow-of-the-disciple">Vow of the Disciple</a></h1>
 <h2 id="entering-the-raid"><a class="header" href="#entering-the-raid">Entering the Raid:</a></h2>
-<p>First, kill Savanathun’s memory to open the door. Once inside, you will enter the bog where you have to deliver a big black package. In each section, there are 9 cruxes. You can hold up to three at a time. The team needs to collect all 10 and deposit them in the package. When you are not next to the big black package, you will gain stacks of pervading darkness. Don’t let it stack to x10 or you will die. Either collect cruxes or ad clear.</p>
+<p>First, kill Savathun’s memory to open the door. Once inside, you will enter the bog where you have to deliver a big black package. In each section, there are 9 cruxes. You can hold up to three at a time. The team needs to collect all 10 and deposit them in the package. When you are not next to the big black package, you will gain stacks of pervading darkness. Either collect cruxes or add clear.</p>
+<div id="admonition-pervading-darkness" class="admonition admonish-danger" role="note" aria-labelledby="admonition-pervading-darkness-title">
+<div class="admonition-title">
+<div id="admonition-pervading-darkness-title">
+<p>Pervading darkness</p>
+</div>
+<a class="admonition-anchor-link" href="raids/vow-of-the-disciple.html#admonition-pervading-darkness"></a>
+</div>
+<div>
+<p>Don’t let your darkness stacks reach x10 or you will die.</p>
+</div>
+</div>
 <h2 id="acquisition"><a class="header" href="#acquisition">Acquisition:</a></h2>
 <p>First, familiarize yourself with these symbols and their names. Note that some members of the fireteam may still use our day-one callouts, which are not the correct names.</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vow-acquisition-map.png" alt="Acquisition map"><span class="img-wrapper"><img src="resources/vow-acquisition-map.png" alt="Acquisition map"></span></label></p>
+<p><img src="raids/../resources/vow-acquisition-map.png" alt="Acquisition map" /></p>
 <p>These symbols will be important throughout the entire raid. The room layout is this:</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vow-symbols.png" alt="Symbols map"><span class="img-wrapper"><img src="resources/vow-symbols.png" alt="Symbols map"></span></label></p>
+<p><img src="raids/../resources/vow-symbols.png" alt="Symbols map" /></p>
 <p>We will split up into three teams of two, with each team defending one of the red obelisks. Each obelisk has a spot for three symbols on it:</p>
 <ol>
 <li>Traveler or Pyramid - this is the location of the taken knight that must be killed to reveal the next symbol. Traveler means the knight will be at R1, R2, R3, R4, or R5. Pyramid means it will be at L1, L2, L3, L4, or L5.</li>
 <li>Door symbol - this symbol corresponds to the door that needs to be entered. Once the room has been entered, the last symbol will be revealed.</li>
-<li>Light or dark - in the room from the previous symbol there will be a glyph keeper on the light side and another on the dark side. Kill the one that corresponds to this symbol, and write the symbol in chat.</li>
+<li>Light or dark - in the room from the previous symbol there will be a glyphkeeper on the light side and another on the dark side. Kill the one that corresponds to this symbol, and write the symbol in chat.</li>
 </ol>
-<p>After completing all three pillars (killing the knight, entering the door, killing the correct glyphkeeper, and noting the symbol) you will have three symbols. Each pillar you have been protecting has 9 symbols on it. Find the pillar that contains your 3 symbols and call it out when you’ve found it. All three symbols need to be shot at the same time for your offering to be accepted.</p>
+<p>After completing all three pillars (killing the knight, entering the door, killing the correct glyphkeeper, and noting the symbol), you will have three symbols. Each pillar you have been protecting has 9 symbols on it. Find the pillar that contains your 3 symbols and call it out when you’ve found it. All three symbols need to be shot at the same time for your offering to be accepted.</p>
 <h3 id="additional-mechanics"><a class="header" href="#additional-mechanics">Additional Mechanics</a></h3>
+<div id="admonition-pillar-damage" class="admonition admonish-warning" role="note" aria-labelledby="admonition-pillar-damage-title">
+<div class="admonition-title">
+<div id="admonition-pillar-damage-title">
+<p>Pillar damage</p>
+</div>
+<a class="admonition-anchor-link" href="raids/vow-of-the-disciple.html#admonition-pillar-damage"></a>
+</div>
+<div>
+<p>If the pillar gets shot too many times by adds, the whole team wipes.</p>
+</div>
+</div>
 <ol>
-<li>If the pillar gets shot too many times by ads, the whole team wipes.</li>
 <li>Unstoppable champions will spawn every once in a while while defending the pillar. Be sure to have some way to deal with them.</li>
 <li>Anti-barrier is helpful for the scorn with the stupid little shield that somehow blocks 90% of my shots.</li>
 <li>Only half of the doors will be open at a time. Shooting the crystal floating in the middle of the room (marked as “door control” on the map) will switch which doors are open.</li>
@@ -481,12 +614,12 @@
 </ul>
 <h2 id="caretaker"><a class="header" href="#caretaker">Caretaker</a></h2>
 <h3 id="teams-1"><a class="header" href="#teams-1">Teams</a></h3>
-<p>Recommend pulse rifle with anti barrier to clear ads at a distance and to be able to hit the snipers when they put up their shield. There will also be overload champions. We will split up into three teams of two:</p>
+<p>Recommend pulse rifle with anti-barrier to clear adds at a distance and to be able to hit the snipers when they put up their shield. There will also be overload champions. We will split up into three teams of two:</p>
 <ul>
-<li>Team 1 - Ad clear
+<li>Team 1 - Add clear
 <ul>
 <li>Protect the pillar</li>
-<li>Clear ads</li>
+<li>Clear adds</li>
 <li>Help shoot bees</li>
 <li>Stay alive</li>
 </ul>
@@ -494,7 +627,7 @@
 <li>Team 2 - Stunners
 <ul>
 <li>One stands in front of Caretaker and the other behind. Getting close to Caretaker makes him slam which opens up his face. Shooting his face opens his back. Shooting his back stuns him.</li>
-<li>Shoot bees and clear ads between stuns.</li>
+<li>Shoot bees and clear adds between stuns.</li>
 <li>Repeat until runners are done.</li>
 </ul>
 </li>
@@ -503,15 +636,26 @@
 <li>Shoot crux to open door</li>
 <li>One person enters and collects up to three of the symbols. Remember the symbols you collect. The higher floors will be more spaced out and have holes you can fall in. Wizards also will blast you while you’re in here. The longer you are in here, the more stacks of pervading darkness you’ll get. Be fast and call out when you need the door opened.</li>
 <li>The other runner will shoot the crux again to open it.</li>
-<li>On the outside, the runner will call out the three symbols collected and they will both need to shoot those symbols on the pillar. The next runner will then run in. Once 9 symbols are collected and shot on the pillar, damage phase begins</li>
+<li>On the outside, the runner will call out the three symbols collected and they will both need to shoot those symbols on the pillar. The next runner will then run in. Once 9 symbols are collected and shot on the pillar, damage phase begins.</li>
 </ul>
 </li>
 </ul>
 <h3 id="damage-phase"><a class="header" href="#damage-phase">Damage phase</a></h3>
 <p>On each floor there are three plates. You must stand on an active plate to do damage. The side that Caretaker comes up is the side the first plate will activate. After a certain amount of time, the next plate will activate and you’ll need to move to it to continue doing damage.</p>
-<p>On the fourth floor, damage phase starts without any other mechanics. If you don’t kill Caretaker before the last plate deactivates, the team wipes</p>
+<p>On the fourth floor, damage phase starts without any other mechanics.</p>
+<div id="admonition-last-plate" class="admonition admonish-warning" role="note" aria-labelledby="admonition-last-plate-title">
+<div class="admonition-title">
+<div id="admonition-last-plate-title">
+<p>Last plate</p>
+</div>
+<a class="admonition-anchor-link" href="raids/vow-of-the-disciple.html#admonition-last-plate"></a>
+</div>
+<div>
+<p>If you don’t kill Caretaker before the last plate deactivates, the team wipes.</p>
+</div>
+</div>
 <h2 id="exhibition"><a class="header" href="#exhibition">Exhibition</a></h2>
-<p>The bane of our vow runs in the past</p>
+<p>The bane of our vow runs in the past.</p>
 <h3 id="mechanics-4"><a class="header" href="#mechanics-4">Mechanics</a></h3>
 <p>There are three relics that everyone needs to be familiar with:</p>
 <ol>
@@ -529,11 +673,20 @@
 <li>To open the first door, you need to shoot the symbol that was present on both glyphkeepers.</li>
 <li>For the next 3 doors, you will need to kill 2 sets of glyphkeepers and shoot 2 symbols to open them.</li>
 <li>There are overload champions in this section.</li>
-<li>After holding a relic, you cannot pick up another one for 30 seconds, so we need to alternate the relic holders between each room</li>
-<li>A pervading darkness buff with a 1:15 countdown starts at the beginning of each room. If it hits zero, we wipe. The buff is stopped by depositing all relics in the next room.</li>
-<li>The buff timer can be reset to 1:14 by killing taken knights</li>
+<li>After holding a relic, you cannot pick up another one for 30 seconds, so we need to alternate the relic holders between each room.</li>
 </ul>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vow-exhibition-map.png" alt="Exhibition map"><span class="img-wrapper"><img src="resources/vow-exhibition-map.png" alt="Exhibition map"></span></label></p>
+<div id="admonition-pervading-darkness-1" class="admonition admonish-warning" role="note" aria-labelledby="admonition-pervading-darkness-1-title">
+<div class="admonition-title">
+<div id="admonition-pervading-darkness-1-title">
+<p>Pervading darkness</p>
+</div>
+<a class="admonition-anchor-link" href="raids/vow-of-the-disciple.html#admonition-pervading-darkness-1"></a>
+</div>
+<div>
+<p>A 1:15 countdown starts at the beginning of each room. If it hits zero, we wipe. Deposit all relics in the next room to stop it, or reset the timer to 1:14 by killing taken knights.</p>
+</div>
+</div>
+<p><img src="raids/../resources/vow-exhibition-map.png" alt="Exhibition map" /></p>
 <h2 id="rhulk"><a class="header" href="#rhulk">Rhulk</a></h2>
 <p>The boss fight for Rhulk can be broken up into three parts:</p>
 <ol>
@@ -542,28 +695,39 @@
 <li>Damaging Rhulk</li>
 </ol>
 <p>We will once again be using all the symbols we have been using throughout the entire raid.</p>
-<p><label class="checkbox-label"><input class="checkbox-img" type="checkbox"><img src="resources/vow-rhulk-map.png" alt="Rhulk map"><span class="img-wrapper"><img src="resources/vow-rhulk-map.png" alt="Rhulk map"></span></label></p>
+<p><img src="raids/../resources/vow-rhulk-map.png" alt="Rhulk map" /></p>
 <h3 id="getting-to-rhulk"><a class="header" href="#getting-to-rhulk">Getting to Rhulk</a></h3>
 <p>There will be a forcefield that prevents you from approaching Rhulk. We will be splitting up into two teams of two. The other two guardians will have a specialized job.</p>
-<h4 id="team-one---ad-clear"><a class="header" href="#team-one---ad-clear">Team One - Ad Clear</a></h4>
-<p>The first team of two is just ad clear. Most of the ads we need to clear will be at range, so submachine guns and glaives are probably not be the way to go here. Prioritize killing glyphkeepers as soon as they spawn. There will be one on each side.</p>
+<h4 id="team-one---add-clear"><a class="header" href="#team-one---add-clear">Team One - Add Clear</a></h4>
+<p>The first team of two is just add clear. Most of the adds we need to clear will be at range, so submachine guns and glaives are probably not the way to go here. Prioritize killing glyphkeepers as soon as they spawn. There will be one on each side.</p>
 <p>Rhulk will charge up blasts and shoot either on the left, the right, or the center. Avoid these blasts, they do a decent amount of damage.</p>
 <h4 id="team-two---runners"><a class="header" href="#team-two---runners">Team Two - Runners</a></h4>
-<p>Team two are runners. There job is to get the emanating force buff and then deposit into the two called out pillars at the same time. To get the emanating force buff, you must first get the leeching force buff. You will get this by shooting the crystal on the right side when you hear the “split” callout or the “second split” callout. Once you have leeching force, you can upgrade it to emanating force by jumping into Rhulk’s laser beam when he shoots it. With Emanating you can pass the forcefield. Once both runners have emanating, two pillars will be called out (eg L1, R3). Each runner will go to a pillar and deposit at the same time. Right after depositing, we will split the buffs again and repeat the process two more times.</p>
+<p>Team two are runners. Their job is to get the emanating force buff and then deposit into the two called out pillars at the same time. To get the emanating force buff, you must first get the leeching force buff. You will get this by shooting the crystal on the right side when you hear the "split" callout or the "second split" callout. Once you have leeching force, you can upgrade it to emanating force by jumping into Rhulk's laser beam when he shoots it. With emanating, you can pass the forcefield. Once both runners have emanating, two pillars will be called out (eg L1, R3). Each runner will go to a pillar and deposit at the same time. Right after depositing, we will split the buffs again and repeat the process two more times.</p>
 <h4 id="team-three---pillar-caller"><a class="header" href="#team-three---pillar-caller">Team Three - Pillar Caller</a></h4>
-<p>Team three is a single guardian. When the glyphkeepers are killed, they reveal three symbols each. One set of symbols can only be seen by guardians without the leeching force buff, and the other can only be seen by guardians with it. The buff holder and the pillar caller will call out their symbols. Just like in the Exhibition encounter, the symbol contained in both sets is the one we are looking for. The Pillar Caller always shoots the left crystal on the “split” callout, and then goes to the center plate and calls out “second split” to give the buff to a runner.</p>
-<p>After second split, the pillar caller should down at the six pillars and call out which two contain the correct symbol for the runners to deposit at.</p>
+<p>Team three is a single guardian. When the glyphkeepers are killed, they reveal three symbols each. One set of symbols can only be seen by guardians without the leeching force buff, and the other can only be seen by guardians with it. The buff holder and the pillar caller will call out their symbols. Just like in the Exhibition encounter, the symbol contained in both sets is the one we are looking for. The pillar caller always shoots the left crystal on the "split" callout, and then goes to the center plate and calls out "second split" to give the buff to a runner.</p>
+<p>After second split, the pillar caller should look down at the six pillars and call out which two contain the correct symbol for the runners to deposit at.</p>
 <h4 id="team-four---buff-holder"><a class="header" href="#team-four---buff-holder">Team Four - Buff Holder</a></h4>
-<p>The buff holder has an easy job. Once the encounter starts, they shoot the crystal above Rhulk to get the Leeching buff. They then stand on the plate and call out “first split”. When “second split” is called out, they shoot the buff on the left. When both glyphkeepers are dead, they call out the symbols they see. They can then just clear ads and avoid Rhulk’s laser. After the runners dunk, the buff holder should be standing on the plate and call out “first split” to restart their cycle.</p>
+<p>The buff holder has an easy job. Once the encounter starts, they shoot the crystal above Rhulk to get the leeching buff. They then stand on the plate and call out "first split". When "second split" is called out, they shoot the buff on the left. When both glyphkeepers are dead, they call out the symbols they see. They can then just clear adds and avoid Rhulk's laser. After the runners dunk, the buff holder should be standing on the plate and call out "first split" to restart their cycle.</p>
 <h3 id="damaging-rhulk"><a class="header" href="#damaging-rhulk">Damaging Rhulk</a></h3>
 <h4 id="glaive-shooter"><a class="header" href="#glaive-shooter">Glaive Shooter</a></h4>
-<p>The glaive shooter’s job is to shoot Rhulk’s glaive. This will once again give them the Leeching force buff. They then need to jump into Rhulk’s laser beam to get the emanating force buff. Someone will callout where they need to deposit this buff.</p>
+<p>The glaive shooter's job is to shoot Rhulk's glaive. This will once again give them the leeching force buff. They then need to jump into Rhulk's laser beam to get the emanating force buff. Someone will callout where they need to deposit this buff.</p>
 <h4 id="non-glaive-shooters"><a class="header" href="#non-glaive-shooters">Non-glaive shooters</a></h4>
-<p>Do not shoot the glaive. Call out the location to dunk when the symbol appears. When Rhulk’s weak spots appear, shoot them. Don’t shoot the glaive. Clear ads</p>
+<p>Do not shoot the glaive. Call out the location to dunk when the symbol appears. When Rhulk's weak spots appear, shoot them. Don't shoot the glaive. Clear adds.</p>
 <h4 id="all"><a class="header" href="#all">All</a></h4>
-<p>After all of Rhulk’s 4 weak spots are broken, damage phase begins. Kill Rhulk until he is immune. Once damage is over, run back to the plate where the Rhulk encounter began. If you don’t get there in time, Rhulk’s forcefield will shoot you off the edge.</p>
+<p>After all of Rhulk's 4 weak spots are broken, damage phase begins. Kill Rhulk until he is immune. Once damage is over, run back to the plate where the Rhulk encounter began.</p>
+<div id="admonition-get-back-in-time" class="admonition admonish-danger" role="note" aria-labelledby="admonition-get-back-in-time-title">
+<div class="admonition-title">
+<div id="admonition-get-back-in-time-title">
+<p>Get back in time</p>
+</div>
+<a class="admonition-anchor-link" href="raids/vow-of-the-disciple.html#admonition-get-back-in-time"></a>
+</div>
+<div>
+<p>If you don't get there in time, Rhulk's forcefield will shoot you off the edge.</p>
+</div>
+</div>
 <h2 id="rick-kackis-3"><a class="header" href="#rick-kackis-3">Rick Kackis</a></h2>
-<iframe width="560" height="315" src="https://www.youtube.com/embed/EfXNilL34DU" title="Destiny 2: VOW OF THE DISCIPLE RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen=""></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/EfXNilL34DU" title="Destiny 2: VOW OF THE DISCIPLE RAID FOR DUMMIES! | Complete Raid Guide &amp; Walkthrough!" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                     </main>
 
                     <nav class="nav-wrapper" aria-label="Page navigation">
@@ -581,11 +745,6 @@
 
         </div>
 
-        <template id=fa-eye><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg></span></template>
-        <template id=fa-eye-slash><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L525.6 386.7c39.6-40.6 66.4-86.1 79.9-118.4c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C465.5 68.8 400.8 32 320 32c-68.2 0-125 26.3-169.3 60.8L38.8 5.1zM223.1 149.5C248.6 126.2 282.7 112 320 112c79.5 0 144 64.5 144 144c0 24.9-6.3 48.3-17.4 68.7L408 294.5c5.2-11.8 8-24.8 8-38.5c0-53-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6c0 10.2-2.4 19.8-6.6 28.3l-90.3-70.8zm223.1 298L373 389.9c-16.4 6.5-34.3 10.1-53 10.1c-79.5 0-144-64.5-144-144c0-6.9 .5-13.6 1.4-20.2L83.1 161.5C60.3 191.2 44 220.8 34.5 243.7c-3.3 7.9-3.3 16.7 0 24.6c14.9 35.7 46.2 87.7 93 131.1C174.5 443.2 239.2 480 320 480c47.8 0 89.9-12.9 126.2-32.5z"/></svg></span></template>
-        <template id=fa-copy><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M502.6 70.63l-61.25-61.25C435.4 3.371 427.2 0 418.7 0H255.1c-35.35 0-64 28.66-64 64l.0195 256C192 355.4 220.7 384 256 384h192c35.2 0 64-28.8 64-64V93.25C512 84.77 508.6 76.63 502.6 70.63zM464 320c0 8.836-7.164 16-16 16H255.1c-8.838 0-16-7.164-16-16L239.1 64.13c0-8.836 7.164-16 16-16h128L384 96c0 17.67 14.33 32 32 32h47.1V320zM272 448c0 8.836-7.164 16-16 16H63.1c-8.838 0-16-7.164-16-16L47.98 192.1c0-8.836 7.164-16 16-16H160V128H63.99c-35.35 0-64 28.65-64 64l.0098 256C.002 483.3 28.66 512 64 512h192c35.2 0 64-28.8 64-64v-32h-47.1L272 448z"/></svg></span></template>
-        <template id=fa-play><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M73 39c-14.8-9.1-33.4-9.4-48.5-.9S0 62.6 0 80V432c0 17.4 9.4 33.4 24.5 41.9s33.7 8.1 48.5-.9L361 297c14.3-8.7 23-24.2 23-41s-8.7-32.2-23-41L73 39z"/></svg></span></template>
-        <template id=fa-clock-rotate-left><span class=fa-svg><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.2.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2022 Fonticons, Inc. --><path d="M75 75L41 41C25.9 25.9 0 36.6 0 57.9V168c0 13.3 10.7 24 24 24H134.1c21.4 0 32.1-25.9 17-41l-30.8-30.8C155 85.5 203 64 256 64c106 0 192 86 192 192s-86 192-192 192c-40.8 0-78.6-12.7-109.7-34.4c-14.5-10.1-34.4-6.6-44.6 7.9s-6.6 34.4 7.9 44.6C151.2 495 201.7 512 256 512c141.4 0 256-114.6 256-256S397.4 0 256 0C185.3 0 121.3 28.7 75 75zm181 53c-13.3 0-24 10.7-24 24V256c0 6.4 2.5 12.5 7 17l72 72c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-65-65V152c0-13.3-10.7-24-24-24z"/></svg></span></template>
 
 
 
@@ -594,13 +753,13 @@
         </script>
 
 
-        <script src="elasticlunr-ef4e11c1.min.js"></script>
-        <script src="mark-09e88c2c.min.js"></script>
-        <script src="searcher-09f2665d.js"></script>
+        <script src="elasticlunr.min.js"></script>
+        <script src="mark.min.js"></script>
+        <script src="searcher.js"></script>
 
-        <script src="clipboard-1626706a.min.js"></script>
-        <script src="highlight-abc7f01d.js"></script>
-        <script src="book-609e4cb8.js"></script>
+        <script src="clipboard.min.js"></script>
+        <script src="highlight.js"></script>
+        <script src="book.js"></script>
 
         <!-- Custom JS scripts -->
 
@@ -609,7 +768,6 @@
             window.setTimeout(window.print, 100);
         });
         </script>
-
 
     </div>
     </body>
