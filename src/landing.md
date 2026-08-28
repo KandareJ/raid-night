@@ -9,7 +9,7 @@ Each week two raids are featured. Featured raids will give guaranteed red border
 * [King's Fall](./raids/kings-fall.md)
 * [Garden of Salvation](./raids/garden-of-salvation.md) 
 * [Root of Nightmares](./raids/root-of-nightmares.md)
-* [Deepstone Crypt](./raids/deep-stone-crypt.md)
+* [Deep Stone Crypt](./raids/deep-stone-crypt.md)
 * [Crota's End](./raids/crotas-end.md)
 * [Vault of Glass](./raids/vault-of-glass.md)
 * [Salvation's Edge](./raids/salvations-edge.md)
